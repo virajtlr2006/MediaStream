@@ -1,8 +1,5 @@
-const server = Bun.serve({
-  port: 3000,
-  routes: {
-    "/": () => new Response('Bun!'),
-  }
-});
+import { drizzle } from 'drizzle-orm/postgres-js'
+import postgres from 'postgres'
 
-console.log(`Listening on ${server.url}`);
+export const client = postgres(process.env.DATABASE_URL!)
+export const db = drizzle({ client });
