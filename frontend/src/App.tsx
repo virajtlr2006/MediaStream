@@ -1,7 +1,10 @@
 import './App.css'
-import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
+import { Show, SignInButton, SignUpButton, UserButton, useUser } from '@clerk/react'
+import {useCurrentUser} from "../hooks/useCurrentUser.ts"
 
 function App() {
+  const {email} = useCurrentUser()
+  console.log(email)
   return (
     <>
       <header>
