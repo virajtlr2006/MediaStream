@@ -9,18 +9,23 @@ export const usersTable = pgTable("users", {
 
 export const postsTable = pgTable("posts", {
   postID:integer().generatedAlwaysAsIdentity(),
-  clerkID:varchar({length: 255}).notNull().unique(),
+  clerkID:varchar({length: 255}).notNull(),
   image:varchar().notNull(),
   description:varchar().notNull(),
-  likes:integer().default(0)
+  likes:integer().default(0),
+  profileimg:varchar().notNull(),
+  username:varchar().notNull(),
 });
 
 export const comments = pgTable("comments", {
   cmtID:integer().generatedAlwaysAsIdentity(),
-  clerkID:varchar({length: 255}).notNull().unique(),
-  postID:integer().notNull().unique(),
+  clerkID:varchar({length: 255}).notNull(),
+  postID:integer().notNull(),
   comment:varchar({length:255}).notNull()
 });
 
 export type User = typeof usersTable.$inferSelect;   
 export type NewUser = typeof usersTable.$inferInsert;
+
+export type Post = typeof postsTable.$inferSelect;
+export type NewPost = typeof postsTable.$inferInsert;
