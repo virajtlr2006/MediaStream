@@ -9,13 +9,13 @@ postRouter.get('/health', (c) => c.text('post route working!'))
 
 postRouter.post("/create", async (c) => {
     try {
-        const { clerkID, image, description } = await c.req.json()
+        const { clerkID, image, description,profileimg,username } = await c.req.json()
 
         if (!clerkID || !image || !description) {
             return c.json({ msg: "Missing parameters" }, 400)
         }
 
-        const response = await db.insert(postsTable).values({ clerkID, image, description })
+        const response = await db.insert(postsTable).values({ clerkID, image, description,profileimg,username })
         return c.json({ msg: response })
     } catch (error) {
         return c.json({ msg: "Error" }, 500)
